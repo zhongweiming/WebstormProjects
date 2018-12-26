@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>水平垂直居中</title>
+	<style type="text/css">
+		/*方法一*/
+		.center{
+			width: 40%;
+			height: 100px;
+			background-color: red;
+			position: absolute;
+			margin:auto;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+		}
+
+		/*方法二 需要知道元素宽*/
+		/*.center{
+			width: 300px;
+			height: 200px;
+			border: 1px solid blue;
+			position: absolute;
+
+			left: 50%;
+			top: 50%;
+
+			margin-left: -150px;
+			margin-top: -100px;
+		}*/
+
+		/*方法三 可以不用知道元素宽*/
+		/*.center{
+			width: 300px;
+			height: 200px;
+			border: 1px solid blue;
+			position: absolute;
+
+			left: 50%;
+			top: 50%;
+
+			transform: translate(-50%,-50%);
+		}*/
+
+		/*方法四*/
+		/*.center{
+			width: 100%;
+			height: 200px;
+			border: 1px solid blue;
+			display: flex;
+			justify-content: center;
+			align-items: center;/*让子项目垂直居中*/
+		}/*
+		.sub{
+			background-color: red;
+			width: 100px;
+			height: 100px;
+		}*/
+
+
+	</style>
+</head>
+<body>
+<div class="center" >
+	<div class="sub">
+		
+	</div>
+</div>
+</body>
+</html>

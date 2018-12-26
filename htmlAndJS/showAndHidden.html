@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            height: 200px;
+            width: 200px;
+            background-color: greenyellow;
+            display: block;
+        }
+    </style>
+    <script>
+        function my$(id){
+            return document.getElementById(id);
+        }
+        window.onload = function () {
+
+            my$("div2").style.display="block";
+            my$("btn").onclick = function () {
+                if (this.value=="hidden"){
+                    my$("div1").style.display = "none";
+                    this.value = "show";
+                }else if(this.value=="show"){
+                    my$("div1").style.display = "block";
+                    this.value = "hidden";
+                }
+            }
+            my$("btn2").onclick = function () {
+                if (my$("div2").style.display=="block"){
+                    my$("div2").style.display = "none";
+                }else if(my$("div2").style.display=="none"){
+                    my$("div2").style.display = "block";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="hidden" id="btn">
+<div id="div1">
+</div>
+<input type="button" value="hidden/show" id="btn2">
+<div id="div2">
+
+</div>
+</body>
+</html>

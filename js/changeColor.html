@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: #f00;
+            margin: 100px auto;
+        }
+        button {
+            display: block;
+            width: 200px;
+            height: 50px;
+            font-size: 16px;
+            margin: 30px auto;
+        }
+    </style>
+    <script>
+        function generateColor() {
+            let str = "#";
+            let arr = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
+            for(let i = 0;i < 6;i++){
+                str+=arr[Math.floor(Math.random()*16)];
+            }
+            return str;
+        }
+        function changeColor(self) {
+            var div = document.getElementById("block");
+            div.style.backgroundColor=generateColor();
+            self.style.backgroundColor=generateColor();
+            self.style.color=generateColor();
+        }
+    </script>
+</head>
+<body>
+    <div id="block">
+
+    </div>
+    <button onclick="changeColor(this)">change color</button>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input {
+            background-color: #00f;
+            width: 100px;
+            height: 50px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var array = document.getElementsByTagName("input");
+            //alert(typeof array);
+            /*for in is for the object not array
+            *no! for in is use for the object and array.
+            *in this condition because the array is actually a object(pseudo array(weishuzu)) ,so use for in will not only the index but also attribute
+            **/
+            for(let item = 0 ; item < array.length;item++){
+                array[item].onclick = function () {
+                    for (let i = 0 ;i < array.length;i++){
+                        array[i].value = "You";
+                        array[i].style.backgroundColor = "#00f";
+                    }
+                    array[item].value = "Me";//use let so that I can use array[item] if var no!
+                    this.style.backgroundColor = "#0f0";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="You">
+<input type="button" value="You">
+<input type="button" value="You">
+<input type="button" value="You">
+<input type="button" value="You">
+</body>
+</html>

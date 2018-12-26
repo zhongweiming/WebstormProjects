@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input {
+            color: grey;
+            width: 200px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<input type="text" value="please input keyword" id="search">
+</body>
+<script src="js/common.js"></script>
+<script>
+    my$("search").onfocus = function () {
+        if (this.value=="please input keyword"){
+            this.value = "";
+            this.style.color = "black";
+        }
+    }
+    my$("search").onblur = function () {
+        if (this.value.length==0){//use number to compare is more efficient
+            this.value = "please input keyword";
+            this.style.color = "grey";
+        }
+    }
+</script>
+</html>

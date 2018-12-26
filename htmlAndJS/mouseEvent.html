@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <ul id="ul">
+        <li>xixihaha I love you</li>
+        <li>xixihaha I love you</li>
+        <li>xixihaha I love you</li>
+        <li>xixihaha I love you</li>
+        <li>xixihaha I love you</li>
+    </ul>
+</body>
+<script src="js/common.js"></script>
+<script>
+    var li = my$("ul").getElementsByTagName("li");
+    for(let i = 0;i < li.length;i++){
+        li[i].onmouseover = function () {
+            this.style.backgroundColor = "red";
+        };
+        li[i].onmouseleave = function () {
+            this.style.backgroundColor = "";
+        }
+    }
+</script>
+</html>

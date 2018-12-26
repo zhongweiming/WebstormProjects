@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .off {
+            background-color: #000;
+        }
+        .statOn {
+            width: 100px;
+            height: 50px;
+            font-size: 16px;
+            border: 1px solid red;
+            color: #f00;
+        }
+        .statOff {
+            width: 100px;
+            height: 50px;
+            font-size: 16px;
+            border: 1px solid yellow;
+            color: yellow;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            document.getElementById("operate").onclick = function () {
+                document.body.className = document.body.className =="off"? "":"off";
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="turn on/off" id="operate" class="statOn">
+</body>
+</html>

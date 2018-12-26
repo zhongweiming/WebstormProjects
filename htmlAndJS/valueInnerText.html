@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="paiTa.html" method="get">
+<button id="btn" value="xixi" type="submit" name="submit">submit</button>
+<select name="select" id="select">
+    <option value=""></option>
+    <option value="xixi" id="opt">male</option>
+    <option value=""></option>
+</select>
+<textarea name="text" id="ta" cols="30" rows="10" >
+enheng?
+</textarea>
+</form>
+</body>
+<script>
+    function my$(id){
+        return document.getElementById(id);
+    }
+    document.write(my$("btn").value);
+    document.write("<br>");
+    document.write(my$("opt").value);
+    document.write("<br>");
+    document.write(my$("ta").value);
+    document.write("<br>");
+</script>
+</html>
+<!--it indicates that button and select when they submit the value is their attribute value-->
+<!--but for textarea ,the value attribute isn't exist!!! the value depends on the innerText yeah-->
+<!--and the value show in the interface depends on the value between like <button>value</button>-->

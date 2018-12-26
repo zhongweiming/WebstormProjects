@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bishi5</title>
+    <script>
+        //笔试1？
+        // var length =10;
+        // function fn() {
+        //     console.log(this.length);
+        // }
+        //
+        // var obj={
+        //     length:5,
+        //     method:function (fn) {
+        //         fn();
+        //         arguments[0]();
+        //     }
+        // };
+        //
+        // obj.method(fn,1);
+
+        //笔试2？
+        // (function () {
+        //     try{
+        //         throw new Error();
+        //     }catch (x) {
+        //         var x=1,y=2;
+        //         console.log(x);
+        //         console.log(c);
+        //         var c=1;
+        //     }
+        //     console.log(c);
+        //     console.log(x);
+        //     console.log(y);
+        // })();
+
+        //笔试3?
+        window.x = 1;
+        console.log(window.x);
+        delete window.x;
+        var output = (function () {
+            delete x;//x为局部变量，delete无效
+            return x;
+        })();
+        console.log(x);
+        console.log(output);
+
+    </script>
+</head>
+<body>
+<h1>xixi</h1>
+<h2>enne</h2>
+</body>
+</html>

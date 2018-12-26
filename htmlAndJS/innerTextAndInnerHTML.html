@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #381;
+        }
+    </style>
+</head>
+<body>
+    <button id="set">set</button>
+    <button id="get">get</button>
+    <div id="div">
+        xixi
+        <p>haha</p>
+    </div>
+</body>
+<script src="js/common.js"></script>
+<script>
+    my$("set").onclick = function () {
+        // my$("div").innerText = "xixi";//setting the text value
+        // my$("div").innerText = "<p>heihe</p>";//setting node,will analyze to &lt;... no effect
+        my$("div").innerHTML = "<p>heihe</p>";
+    }
+    my$("get").onclick = function () {
+        console.log(my$("div").innerText);//return all the text even childnode
+        console.log(my$("div").textContent);//will delete the extra line
+        console.log(my$("div").innerHTML);//return all code in the node
+    }
+    /**summary:
+     * 1.If you want to set text ,you can use innerText,textContent and innerHTML
+     * 2.If you want to set node ,you can use innerHTML
+     * 3.If you want to just get all the text,use the innerText or textContent
+     * 4.If you want to get the html use the innerHTML.
+     */
+</script>
+</html>

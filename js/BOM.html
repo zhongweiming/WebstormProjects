@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        // var a=10;//全局中var a= 和 a=一个意思声明全局变量
+        // alert(window.a);
+
+        document.write('距离左边：'+window.screenLeft+'</br>');
+        document.write('距离上边：'+window.screenTop+'</br>');
+        document.write(window.screenX+'</br>');
+        document.write(window.screenY+'</br>');
+        window.moveTo(100,100);//可能被禁用
+        document.write('innerWidth:'+window.innerWidth+'</br>');
+        document.write('innerHeight:'+window.innerHeight+'</br>');
+        document.write('outerWidth:'+window.outerWidth+'</br>');
+        document.write('outerWidth:'+window.outerHeight+'</br>');
+        document.write('document.body.clientWidth:'+document.body.clientWidth+'</br>');
+        document.write('document.body.clientHeight:'+document.body.clientHeight+'</br>');
+        document.write('document.documentElement.clientWidth'+document.documentElement.clientWidth+'</br>');
+        document.write('document.documentElement.clientHeight'+document.documentElement.clientHeight+'</br>');
+
+        window.resizeTo(100,100);//被禁用
+        //alert('resizeTo和moveTo被禁用');
+        //window.open("http://www.baidu.com","","height=400,width=400")//要加上http
+
+        var timeoutId = setTimeout(function () {
+            alert("very good");
+        },2000);
+        clearTimeout(timeoutId);
+        // window.print();//可以可以
+        //window.find();//貌似没用
+        // if(window.confirm("Are you sure?")){
+        //     alert("good");
+        // }else {
+        //     alert("oh,no");
+        // }
+        var result = prompt("What's your name?","Bob");
+        if(result!=null){//关闭对话框的情况下返回空
+            alert("Welcome,"+result);
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

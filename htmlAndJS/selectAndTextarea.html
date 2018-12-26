@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function my$(id){
+            return document.getElementById(id);
+        }
+        window.onload = function () {
+            my$("choose").onclick = function () {
+                my$("girl").selected = true;
+            }
+            my$("changeTa").onclick = function () {
+                my$("ta").value = "heihei";//use for the form (depend on the value)
+                my$("ta").innerText = "haha";//because it has /textarea
+                alert(my$("ta").value);//heihei
+                //after the two , it will show heihei  so the value priority is higher!!!
+                my$("ta").disabled = true;
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="choose sex" id="choose">
+<select name="sex" id="sex">
+    <!--to show the value should write between option and /option-->
+    <option value="boy">boy</option>
+    <option value="girl" id="girl">girl</option>
+    <option value="secret">secret</option>
+</select>
+<textarea name="" id="ta" cols="30" rows="10" >
+    xixihaha
+    jfdsi
+    fjjaf
+</textarea>
+<input type="button" id="changeTa" value="change">
+</body>
+</html>

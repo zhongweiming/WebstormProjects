@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var a=10;//global variable
+    b=20;//implicit global variable
+    let d = 30;//really local variable
+    window.c=0;
+    function f() {
+        console.log(a);
+    }
+    f();
+    console.log(window.a);
+    console.log(window.b);
+    console.log(window.c);
+    console.log(window.d);//undefined
+    console.log(d);
+    delete window.a;//cannot delete a
+    delete a;//cannot delete a
+    delete b;//can delete..implicit global
+    delete c;
+    console.log(window.b);
+    console.log(window.a);//cannot delete variable defined by var
+    console.log(window.c);
+</script>
+</body>
+</html>

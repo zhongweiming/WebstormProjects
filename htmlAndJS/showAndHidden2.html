@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            height: 200px;
+            width: 200px;
+            background-color: greenyellow;
+            display: block;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        function my$(id){
+            return document.getElementById(id);
+        }
+        window.onload = function () {
+
+            my$("btn").onclick = function () {
+                if (my$("div1").className!="hidden"){// use className rather then class to set or get the class
+                    my$("div1").className = "hidden";
+                    this.value = "show";
+                }else if(my$("div1").className=="hidden"){
+                    my$("div1").className = "";
+                    this.value = "hidden";
+                }
+            }
+            my$("btn2").onclick = function () {
+                if (my$("div2").className!="hidden"){// use className rather then class to set or get the class
+                    my$("div2").className = "hidden";
+                }else if(my$("div2").className=="hidden"){
+                    my$("div2").className = "";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="hidden" id="btn">
+<div id="div1">
+</div>
+<input type="button" value="hidden/show" id="btn2">
+<div id="div2">
+
+</div>
+</body>
+</html>

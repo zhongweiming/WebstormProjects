@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+
+</head>
+<body>
+<input type="button" value="来个美女" id="btn"/>
+<div id="dv"></div>
+
+<script src="../js/common.js"></script>
+<script>
+  //点击按钮,在div中创建一个图片
+  my$("btn").onclick=function () {
+      var count = parseInt(3*Math.random());
+      var imgSrc = 0;
+      switch (count) {
+          case 0:imgSrc = "../images/1.jpg";break;
+          case 1:imgSrc = "../images/2.jpg";break;
+          case 2:imgSrc = "../images/3.jpg";break;
+          default:imgSrc = "../images/3.jpg";
+      }
+     my$("dv").innerHTML="<img src='"+imgSrc+"' alt='美女' />";
+  };
+
+</script>
+</body>
+</html>

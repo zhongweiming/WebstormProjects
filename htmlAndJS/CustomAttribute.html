@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="ul">
+    <li>mary</li>
+    <li>peter</li>
+    <li>bob</li>
+    <li>andy</li>
+    <li>lili</li>
+</ul>
+</body>
+<script src="js/common.js"></script>
+<script>
+    // use custom attribute to save some data
+    var li = my$("ul").getElementsByTagName("li");
+    for (let i = 0; i < li.length;i++){
+        //li[i].score = (i+1)*10;//the custom attribute is on the dom object ,not the node
+        li[i].setAttribute("score",(i+1)*10);//set the attribute on the node,will show in the html node
+        // li[i].removeAttribute("score");//remove custom attribute and the self attribute like class!!!
+        li[i].onclick = function () {
+            //alert(li[i].score);//can get the attribute on the dom object||but cannot get the attribute set by setAttribute
+            alert(this.getAttribute("score"));//get the attribute on the node
+        }
+    }
+</script>
+</html>

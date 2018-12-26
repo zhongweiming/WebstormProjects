@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+  <style>
+    div{
+      width: 300px;
+      height: 300px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+<input type="button" value="创建表格" id="btn"/>
+<div id="dv"></div>
+<script src="../js/common.js"></script>
+<script>
+
+  var arr=[
+    {name:"百度",href:"http://www.baidu.com"},
+    {name:"谷歌",href:"http://www.google.com"},
+    {name:"优酷",href:"http://www.youku.com"},
+    {name:"土豆",href:"http://www.tudou.com"},
+    {name:"快播",href:"http://www.kuaibo.com"},
+    {name:"爱奇艺",href:"http://www.aiqiyi.com"}
+  ];
+
+  //create the table by click button
+  my$("btn").onclick = function () {
+      var table = document.createElement("table");
+      table.border='1';
+      table.cellSpacing="0";
+      table.cellPadding="0";
+      my$("dv").appendChild(table);
+      for(let i = 0;i < arr.length;i++){
+          //create row
+          var tr = document.createElement("tr");
+          var rowContent = arr[i];
+          //create columns
+          var td1 = document.createElement("td");
+          var td2 = document.createElement("td");
+          td1.innerText = rowContent.name;
+          td2.innerHTML = "<a href='"+rowContent.href+"'>"+rowContent.name+"</a>"
+          table.appendChild(tr);
+          tr.appendChild(td1);
+          tr.appendChild(td2);
+      }
+  }
+
+</script>
+</body>
+</html>
