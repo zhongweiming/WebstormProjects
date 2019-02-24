@@ -50,7 +50,7 @@
     //先清理定时器
      clearInterval(element.timeId);
     //一会要清理定时器(只产生一个定时器)
-    element.timeId = setInterval(function () {
+    element.timeId = setInterval(function () {//use attribute to avoid lots of variables every click
       //获取div的当前的位置
       var current = element.offsetLeft;//数字类型,没有px
       //div每次移动多少像素---步数
@@ -59,7 +59,7 @@
       //每次移动后的距离
       current += step;
       //判断当前移动后的位置是否到达目标位置
-      if (Math.abs(target - current) >= Math.abs(step)) {//>= rather than >
+      if (Math.abs(target - current+step) >= Math.abs(step)) {//+step is for the critical like 396 in this example
         element.style.left = current + "px";
       } else {
         //清理定时器

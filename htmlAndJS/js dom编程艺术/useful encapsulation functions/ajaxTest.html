@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax</title>
+</head>
+<body>
+<div id="new">
+
+</div>
+<script src="general%20functions.js"></script>
+<script src="Ajax.js"></script>
+<script>
+    function getNewContent() {
+        var request = getHTTPObject();
+        if (request){
+            request.open("GET","example.txt",true);
+            request.onreadystatechange = function () {
+                console.log(request.readyState);
+                if(request.readyState == 4){
+                    alert("response received");
+                    var para = document.createElement("p");
+                    var txt = document.createTextNode(request.responseText);
+                    console.log(request.responseXML);
+                    para.appendChild(txt);
+                    document.getElementById("new").appendChild(para);
+                }
+            };
+            request.send(null);
+        }else {
+            alert("Sorry,your browser doesn't support XMLHTTPRequest");
+        }
+        alert("Function Done");
+    }
+    addLoadEvent(getNewContent);
+</script>
+</body>
+</html>
