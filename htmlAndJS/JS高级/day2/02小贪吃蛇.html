@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>贪吃蛇</title>
+    <style>
+        .map {
+            width: 800px;
+            height: 580px;
+            background-color: #CCCCCC;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<!--画出地图，设置样式-->
+<div class="map"></div>
+<script>
+
+    //自调用函数
+    (function () {
+        var elements = [];//用于保存食物元素
+        //食物对象，包含宽，高，颜色，横纵坐标属性
+        function Food(x, y, width, height, color) {
+            this.x = x || 0;
+            this.y = y || 0;
+            this.width = width || 20;
+            this.heigth = height || 20;
+            this.color = color || "green";
+        }
+
+        //为食物对象添加初始化方法(作用，随机出现在地图上)
+        Food.prototype.init = function (map) {
+            //remove the food first
+            remove();
+            //create div
+            var div = document.createElement("div");
+            //add div to map
+            map.appendChild(div);
+            //assign value to div
+            div.style.width = this.width + "px";//do not forget px!!!
+            div.style.height = this.heigth + "px";
+            div.style.backgroundColor = this.color;
+            //position is random
+            div.style.position = "absolute";
+            this.x = parseInt(Math.random() * (map.offsetWidth / this.width)) * this.width;
+            this.y = parseInt(Math.random() * (map.offsetHeight / this.heigth)) * this.width;
+            div.style.left = this.x + "px";
+            div.style.top = this.y + "px";
+            //add div to the elements
+            elements.push(div);
+        }
+
+        //private function to delete food
+        function remove() {
+            for (var i = 0; i < elements.length; i++) {
+                var ele = elements[i];
+                ele.parentNode.removeChild(ele);
+                elements.splice(i, 1);
+            }
+        }
+
+        window.Food = Food;
+    }());
+
+    //snake
+    (function () {
+        //create an array to store snake
+        var elements = [];
+
+        //constructor for snake
+        function Snake(width, height, direction) {
+            //the width and height of every part of snake,all the same
+            this.width = width || 20;
+            this.height = height || 20;
+            //the body of snake
+            this.body = [
+                {x: 3, y: 2, color: "red"},//head
+                {x: 2, y: 2, color: "orange"},//body
+                {x: 1, y: 2, color: "orange"}//body
+            ];
+            //direction
+            this.direction = direction || "right";
+        }
+
+        //create init function
+        Snake.prototype.init = function (map) {
+            //delete the snake before
+            remove();
+            // traverse the array to create div
+            for (let i = 0; i < this.body.length; i++) {
+                let obj = this.body[i];
+                //create div
+                let div = document.createElement("div");
+                //append div to map
+                map.appendChild(div);
+                //set style for div
+                div.style.position = "absolute";
+                div.style.width = this.width + "px";
+                div.style.height = this.height + "px";
+                div.style.left = obj.x * this.width + "px";
+                div.style.top = obj.y * this.height + "px";
+                div.style.backgroundColor = obj.color;
+
+                //add div to array to delete more convenient later
+                elements.push(div);
+            }
+        }
+        //move the snake
+        Snake.prototype.move = function (food, map) {
+            //change the position of body
+            var i = this.body.length - 1;
+            for (; i > 0; i--) {//make sure the later followed the head!
+                this.body[i].x = this.body[i - 1].x;
+                this.body[i].y = this.body[i - 1].y;
+            }
+            //change the position of head
+            switch (this.direction) {
+                case "right":
+                    this.body[0].x++;
+                    break;
+                case "left":
+                    this.body[0].x--;
+                    break;
+                case "top":
+                    this.body[0].y--;
+                    break;
+                case "bottom":
+                    this.body[0].y++;
+                    break;
+            }
+            //judge if the food was ate
+            //position of head of snake
+            var headX = this.body[0].x*this.width;
+            var headY = this.body[0].y*this.height;
+            //position of food
+            var foodX = food.x;
+            var foodY = food.y;
+            //judge
+            console.log(this.body);
+
+            if (headX==foodX&&headY==foodY){
+                //the length of snake +1
+                console.log(this.body);
+                var last = this.body[this.body.length-1];//刚开始加上的方块和原先的最后一块方块是重叠，但在下一次移动的时候加上的方块
+                //位置不变，因为会移到前面一块方块地方，而原先的尾巴就移走了，此时就没有重叠了，soga
+                this.body.push({
+                    x:last.x,
+                    y:last.y,
+                    color:last.color
+                });
+                console.log(this.body);
+                //delete food and generate new food
+                food.init(map);
+            }
+        }
+
+        //delete snake function
+        function remove() {
+            //by array
+            for (var i = elements.length - 1; i >= 0; i--) {
+                // delete
+                elements[i].parentNode.removeChild(elements[i]);
+                //delete from array,too
+                elements.splice(i, 1);
+            }
+        }
+
+        window.Snake = Snake;
+    }());
+
+    //game
+    (function () {
+        var that = null;
+
+        //create constructor of game
+        function Game(map) {
+            this.food = new Food();
+            this.snake = new Snake();
+            this.map = map;
+            that = this;//use for setInterval
+        }
+
+        Game.prototype.init = function () {
+            //init food
+            this.food.init(this.map);
+            //init snake
+            this.snake.init(this.map);
+            //play the game
+            this.run(this.food, this.map);
+            //change direction
+            this.bindKey();
+            // setInterval(function () {
+            //     this.snake.move()
+            // })this is window ,so cannot use it
+            // setInterval(function () {
+            //     that.snake.move(that.food,that.map);
+            //     that.snake.init(that.map);
+            // },150);//do not use setInterval here
+        }
+        //snake running
+        Game.prototype.run = function (food, map) {
+            var timeId = setInterval(function () {
+                var snake = this.snake;
+                //move the snake
+                snake.move(food, map);
+                //init snake
+                snake.init(map);
+                //the max x and y
+                var maxX = map.offsetWidth / snake.width;
+                var maxY = map.offsetHeight / snake.height;
+                //the position of snake
+                var headX = snake.body[0].x;
+                var headY = snake.body[0].y;
+                //judge
+                if (headX < 0 || headX >= maxX) {
+                    clearInterval(timeId);
+                    alert("game over");
+                }
+                if (headY < 0 || headY >= maxY) {
+                    clearInterval(timeId);
+                    alert("game over");
+                }
+            }.bind(that), 1000)//use bind to bind Game object
+        }
+        //get the key to change the direction
+        Game.prototype.bindKey = function(){
+            //get the key user press and change the direction
+            document.addEventListener("keydown",function (e) {
+                //this is document ,so use bind function
+                switch (e.keyCode) {
+                    case 37:this.snake.direction = "left";break;
+                    case 38:this.snake.direction = "top";break;
+                    case 39:this.snake.direction = "right";break;
+                    case 40:this.snake.direction = "bottom";break;
+                }
+            }.bind(that),false)
+
+        }
+        window.Game = Game;
+    }());
+    //test the game
+    var map = document.querySelector(".map");
+    var game = new Game(map);
+    game.init();
+    // //外部测试代码
+    // var fd = new Food();
+    // fd.init(map);
+    // var sk = new Snake();
+    // sk.init(map);//generate snake
+    // sk.move(fd,map);//move snake
+    // sk.init(map);//delete former snake and generate new snake
+
+    // console.log(fd.x + "=====" + fd.y);
+</script>
+</body>
+</html>

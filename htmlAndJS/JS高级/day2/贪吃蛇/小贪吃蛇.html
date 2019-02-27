@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>贪吃蛇</title>
+    <style>
+        .map {
+            width: 800px;
+            height: 580px;
+            background-color: #CCCCCC;
+            position: relative;
+        }
+        button{
+            width: 80px;
+            height: 30px;
+            background-color: #0000ff;
+            color: #ff0000;
+            position: absolute;
+            font-size: 14px;
+        }
+        /*choose the first child of the father of button*/
+        button:nth-child(1){
+            top: 50px;
+            left: 860px;
+        }
+        button:nth-child(2){
+            top: 100px;
+            left: 860px;
+        }
+        button:nth-child(3){
+            top: 150px;
+            left: 860px;
+        }
+        button:nth-child(4){
+            top: 200px;
+            left: 860px;
+        }
+        button:nth-child(5){
+            top: 250px;
+            left: 860px;
+        }
+        button:nth-child(6){
+            top: 300px;
+            left: 860px;
+        }
+        button:nth-child(7){
+            top: 350px;
+            left: 860px;
+        }
+    </style>
+</head>
+<body>
+<!--画出地图，设置样式-->
+<div class="map"></div>
+<div id="btn">
+<button id="easy">easy</button>
+<button id="normal">normal</button>
+<button id="hard">hard</button>
+<button id="veryHard">very hard</button>
+<button id="crazy">crazy</button>
+<button id="pause">pause</button>
+<button id="continue">continue</button>
+</div>
+<script src="food.js"></script>
+<script src="snake.js"></script>
+<script src="game.js"></script>
+<script>
+    //test the game
+    var map = document.querySelector(".map");
+    var game = new Game(map);
+    game.init();
+    // //外部测试代码
+    // var fd = new Food();
+    // fd.init(map);
+    // var sk = new Snake();
+    // sk.init(map);//generate snake
+    // sk.move(fd,map);//move snake
+    // sk.init(map);//delete former snake and generate new snake
+</script>
+</body>
+</html>

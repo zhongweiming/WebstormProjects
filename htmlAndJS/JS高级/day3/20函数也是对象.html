@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <script>
+
+        //函数是对象,对象不一定是函数
+
+        //对象中有__proto__原型,是对象
+        //函数中有prototype原型和_proto_,是对象
+
+        //    function F1() {
+        //    }
+        //
+        //    console.dir(F1);
+        //
+        console.dir(Math);//中有__proto__,但是没有prototype
+        console.log(Math.__proto__ == Object.prototype);
+        //    //对象中有__proto__,函数中应该有prototype
+        //
+        //    如果一个东西里面有prototype，又有__proto__,说明是函数,也是对象
+
+
+        //
+        //    function F1(name) {
+        //      this.name=name;
+        //    }
+        //
+        //    console.dir(F1);
+
+        /**@important
+         *所有的函数实际上都是Function的构造函数创建出来的实例对象
+         */
+        var f1 = new Function("num1", "num2", "num3", "return num1+num2");//the last parameter is function body,and the former
+        //is parameters to pass
+        console.log(f1(10, 20));
+        console.log(f1.__proto__ == Function.prototype);
+
+        //所以,函数实际上也是对象
+
+        //  console.dir(f1);
+        function f2() {
+
+        }
+
+        console.dir(f2);
+        console.log(f2.__proto__ == Function.prototype);
+        console.dir(Function);
+        // and the Function.prototype.__proto__ is Object.prototype
+        console.log(Function.prototype.__proto__ == Object.prototype);
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

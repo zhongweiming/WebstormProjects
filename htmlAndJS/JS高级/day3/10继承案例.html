@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <script>
+
+        //动物有名字,有体重,有吃东西的行为
+        //小狗有名字,有体重,有毛色, 有吃东西的行为,还有咬人的行为
+        //哈士奇名字,有体重,有毛色,性别, 有吃东西的行为,还有咬人的行为,逗主人开心的行为
+
+        //animal constructor
+        function Animal(name,weight) {
+            this.name = name;
+            this.weight = weight;
+        }
+        Animal.prototype.eat = function () {
+            console.log("eat")
+        }
+        //dog constructor
+        function Dog(color) {
+            this.color = color;
+        }
+        Dog.prototype = new Animal("xiaoxiao","10kg");
+        Dog.prototype.bite = function () {
+            console.log("bite");
+        }
+        //hashiqi constructor
+        function ErHa(sex) {
+            this.sex = sex;
+        }
+        ErHa.prototype = new Dog("red");
+        ErHa.prototype.play = function () {
+            console.log("play");
+        }
+        var erHa = new ErHa("girl");
+        //inherit
+        console.log(erHa.name);
+        console.log(erHa.weight);
+        console.log(erHa.color);
+        erHa.eat();
+        erHa.bite();
+        // self
+        console.log(erHa.sex);
+        erHa.play();
+
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>
